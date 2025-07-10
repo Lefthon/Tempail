@@ -2,15 +2,15 @@
   "version": 2,
   "builds": [
     {
+      "src": "server/index.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build"
       }
-    },
-    {
-      "src": "server/index.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -20,10 +20,16 @@
     },
     {
       "src": "/(.*)",
-      "dest": "client/build/$1"
+      "dest": "client/build/$1",
+      "headers": {
+        "Cache-Control": "s-maxage=0"
+      }
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/client/build/index.html"
+    }
+  ]
 }
