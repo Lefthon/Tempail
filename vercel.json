@@ -23,12 +23,6 @@
       "dest": "client/build/$1"
     }
   ],
-  {
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/404.html", "status": 404 }
-  ]
-}
   "env": {
     "NODE_ENV": "production"
   }
