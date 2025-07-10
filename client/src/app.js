@@ -12,7 +12,7 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:3001/api/email/create', {
+      const response = await fetch('/api/email/create', {
         method: 'POST'
       });
       const data = await response.json();
@@ -33,7 +33,7 @@ function App() {
     if (!email) return;
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/email/messages/${email.emailToken}`);
+      const response = await fetch(`/api/email/messages/${email.emailToken}`);
       const data = await response.json();
       if (data.success) {
         setMessages(data.messages);
@@ -50,7 +50,7 @@ function App() {
   const fetchMessage = async (messageId) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/email/message/${messageId}`);
+      const response = await fetch(`/api/email/message/${messageId}`);
       const data = await response.json();
       if (data.success) {
         setSelectedMessage(data.message);
